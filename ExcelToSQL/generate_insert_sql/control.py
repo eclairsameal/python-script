@@ -2,4 +2,6 @@ import sys
 import function
 
 # print(sys.argv)
-function.generate_insert_sql(sys.argv[1])
+
+for arg in sys.argv[1:]:
+    function.generate_insert_sql(arg)

@@ -2,9 +2,10 @@ import pandas as pd
 import numpy as np
 
 
-def get_table_name():
-    pass
-
+def get_table_name(file_path='table_data.xlsx'):
+    sheet_name = 'table_name'
+    table_name_df = pd.read_excel(file_path, sheet_name=sheet_name, header=0)
+    return table_name_df
 
 
 def generate_insert_sql(target_physical=""):
@@ -51,7 +52,7 @@ def generate_insert_sql(target_physical=""):
                 if row_data_types[i] == "integer":
                     values_placeholder += f"{row_list[i]}"
                 else:
-                    values_placeholder += f'"{row_list[i]}"'
+                    values_placeholder += f"'{row_list[i]}'"
                 if i != len(row_list)-1:
                     values_placeholder += ", "
                 else:
